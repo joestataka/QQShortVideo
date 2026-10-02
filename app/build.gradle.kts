@@ -45,11 +45,13 @@ android {
     }
 }
 
-// Force use of ARM64 binaries for AAPT2 in Proot environment
+// 仅在 ARM64 环境（如 proot/Termux）下替换为 aarch64 版 AAPT2；
+// x86_64 环境（如 GitHub Actions 云端）使用官方默认版本。
+val isArm64 = System.getProperty("os.arch").lowercase() in listOf("aarch64", "arm64")
 configurations.all {
     resolutionStrategy.eachDependency {
-        if (requested.group == "com.android.tools.build" && requested.name == "aapt2") {
-            useTarget("com.android.tools.build:aapt2:${'$'}{requested.version}:linux-aarch64")
+        if (isArm64 && requested.group == "com.android.tools.build" && requested.name == "aapt2") {
+            useTarget("com.android.tools.build:aapt2:${requested.version}:linux-aarch64")
         }
     }
 }

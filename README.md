@@ -1,5 +1,7 @@
 # QQ 短视频缓存浏览器
 
+> ⬇️ **[下载最新 APK](https://github.com/joestataka/QQShortVideo/releases/latest)**
+
 一个 Jetpack Compose 应用：读取 QQ 的短视频缓存目录，**以封面网格展示，点击封面即可播放对应视频**。
 
 ## 功能

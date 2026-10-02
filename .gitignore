@@ -1,0 +1,25 @@
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# 构建产物
+/app/build
+*.apk
+*.aab
+
+# 本地工具/会话数据（含隐私，切勿提交）
+.operit/
+.backup/
+.kotlin/

@@ -1,4 +1,4 @@
-package com.java.myapplication.ui
+package com.joestataka.qqshortvideo.ui
 
 import android.content.pm.PackageManager
 import androidx.activity.compose.BackHandler
@@ -46,9 +46,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.java.myapplication.data.RootShell
-import com.java.myapplication.data.VideoItem
-import com.java.myapplication.data.VideoScanner
+import com.joestataka.qqshortvideo.data.RootShell
+import com.joestataka.qqshortvideo.data.VideoItem
+import com.joestataka.qqshortvideo.data.VideoScanner
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

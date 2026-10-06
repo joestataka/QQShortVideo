@@ -1,4 +1,4 @@
-package com.java.myapplication
+package com.joestataka.qqshortvideo
 
 import org.junit.Test
 

@@ -1,4 +1,4 @@
-package com.java.myapplication.ui
+package com.joestataka.qqshortvideo.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectDragGestures

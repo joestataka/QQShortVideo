@@ -118,6 +118,6 @@ source ~/.bashrc
 ```bash
 pm install -r app-debug.apk
 # 所有文件访问权限（若设备支持）
-appops set com.java.myapplication MANAGE_EXTERNAL_STORAGE allow
+appops set com.joestataka.qqshortvideo MANAGE_EXTERNAL_STORAGE allow
 # 或：在 KernelSU / Magisk 管理器里把本应用加入允许列表（root 方案）
 ```

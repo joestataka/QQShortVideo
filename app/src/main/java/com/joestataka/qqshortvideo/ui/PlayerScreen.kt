@@ -1,4 +1,4 @@
-package com.java.myapplication.ui
+package com.joestataka.qqshortvideo.ui
 
 import android.view.ViewGroup
 import android.widget.MediaController
@@ -29,9 +29,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
-import com.java.myapplication.data.RootShell
-import com.java.myapplication.data.Source
-import com.java.myapplication.data.VideoItem
+import com.joestataka.qqshortvideo.data.RootShell
+import com.joestataka.qqshortvideo.data.Source
+import com.joestataka.qqshortvideo.data.VideoItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File

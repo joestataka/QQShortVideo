@@ -4,15 +4,15 @@ plugins {
 }
 
 android {
-    namespace = "com.java.myapplication"
+    namespace = "com.joestataka.qqshortvideo"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.java.myapplication"
+        applicationId = "com.joestataka.qqshortvideo"
         minSdk = 24
         targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "1.0.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {

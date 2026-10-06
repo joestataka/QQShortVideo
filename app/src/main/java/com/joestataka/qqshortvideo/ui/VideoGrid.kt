@@ -1,4 +1,4 @@
-package com.java.myapplication.ui
+package com.joestataka.qqshortvideo.ui
 
 import android.graphics.Bitmap
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -42,8 +42,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.java.myapplication.data.ThumbnailCache
-import com.java.myapplication.data.VideoItem
+import com.joestataka.qqshortvideo.data.ThumbnailCache
+import com.joestataka.qqshortvideo.data.VideoItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

@@ -1,4 +1,4 @@
-package com.java.myapplication.ui
+package com.joestataka.qqshortvideo.ui
 
 import android.content.Context
 import android.content.Intent
@@ -16,9 +16,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.java.myapplication.data.RootShell
-import com.java.myapplication.data.Source
-import com.java.myapplication.data.VideoItem
+import com.joestataka.qqshortvideo.data.RootShell
+import com.joestataka.qqshortvideo.data.Source
+import com.joestataka.qqshortvideo.data.VideoItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withContext

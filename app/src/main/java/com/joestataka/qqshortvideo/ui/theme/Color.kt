@@ -1,4 +1,4 @@
-package com.java.myapplication.ui.theme
+package com.joestataka.qqshortvideo.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

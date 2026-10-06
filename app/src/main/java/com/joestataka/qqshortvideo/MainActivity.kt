@@ -1,12 +1,12 @@
-package com.java.myapplication
+package com.joestataka.qqshortvideo
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
-import com.java.myapplication.ui.BrowserScreen
-import com.java.myapplication.ui.theme.MyApplicationTheme
+import com.joestataka.qqshortvideo.ui.BrowserScreen
+import com.joestataka.qqshortvideo.ui.theme.MyApplicationTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

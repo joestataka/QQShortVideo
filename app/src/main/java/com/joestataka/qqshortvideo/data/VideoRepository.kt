@@ -1,4 +1,4 @@
-package com.java.myapplication.data
+package com.joestataka.qqshortvideo.data
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory

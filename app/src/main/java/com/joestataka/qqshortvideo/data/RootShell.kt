@@ -1,4 +1,4 @@
-package com.java.myapplication.data
+package com.joestataka.qqshortvideo.data
 
 import android.content.pm.PackageManager
 import android.os.ParcelFileDescriptor
@@ -20,7 +20,7 @@ object RootShell {
 
     private const val TAG = "QQShort"
     private const val SU = "/system/bin/su"
-    private const val LOG_FILE = "/data/data/com.java.myapplication/files/root.log"
+    private const val LOG_FILE = "/data/data/com.joestataka.qqshortvideo/files/root.log"
 
     fun fileLog(msg: String) {
         runCatching { File(LOG_FILE).appendText("${System.currentTimeMillis()} $msg\n") }

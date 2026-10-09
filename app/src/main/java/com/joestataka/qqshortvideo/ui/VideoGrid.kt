@@ -42,6 +42,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.joestataka.qqshortvideo.data.DurationProbe
 import com.joestataka.qqshortvideo.data.ThumbnailCache
 import com.joestataka.qqshortvideo.data.VideoItem
 import kotlinx.coroutines.Dispatchers
@@ -147,10 +148,16 @@ private fun VideoCell(
 ) {
     var bitmap by remember(item.id) { mutableStateOf<Bitmap?>(null) }
     var failed by remember(item.id) { mutableStateOf(false) }
+    var duration by remember(item.id) { mutableStateOf<Long?>(null) }
 
     LaunchedEffect(item.id) {
         val b = withContext(Dispatchers.IO) { ThumbnailCache.get(item) }
         if (b == null) failed = true else bitmap = b
+    }
+
+    // 时长：走特权通道读文件头/尾解析 mvhd（结果有缓存，同一文件只读一次）
+    LaunchedEffect(item.id) {
+        duration = withContext(Dispatchers.IO) { DurationProbe.get(item.path) }
     }
 
     val shape = RoundedCornerShape(10.dp)
@@ -206,7 +213,8 @@ private fun VideoCell(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    text = item.timeText.drop(5),
+                    text = duration?.let { "${item.timeText.drop(5).take(5)} ${fmtDuration(it)}" }
+                        ?: item.timeText.drop(5).take(5),
                     fontSize = 9.sp,
                     color = Color.White,
                     maxLines = 1
@@ -242,4 +250,13 @@ fun humanSize(bytes: Long): String = when {
     bytes >= 1024L * 1024 -> "%.1fM".format(bytes / 1024.0 / 1024.0)
     bytes >= 1024 -> "%.0fK".format(bytes / 1024.0)
     else -> "${bytes}B"
+}
+
+/** 毫秒 → 时长文本（1:05 / 1:02:03） */
+fun fmtDuration(ms: Long): String {
+    val s = (ms / 1000).coerceAtLeast(0)
+    val h = s / 3600
+    val m = (s % 3600) / 60
+    val sec = s % 60
+    return if (h > 0) "%d:%02d:%02d".format(h, m, sec) else "%d:%02d".format(m, sec)
 }

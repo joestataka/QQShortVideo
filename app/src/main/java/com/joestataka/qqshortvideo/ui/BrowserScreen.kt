@@ -1,6 +1,10 @@
 package com.joestataka.qqshortvideo.ui
 
+import android.app.Activity
+import android.content.Context
+import android.content.ContextWrapper
 import android.content.pm.PackageManager
+import android.os.SystemClock
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -33,6 +37,7 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -79,6 +84,27 @@ fun BrowserScreen() {
         selecting = false
         selected = emptySet()
     }
+
+    // 统一的返回入口（带 350ms 防抖）：
+    // 一次滑动可能同时触发「app 自己的手势」和「系统返回手势」，
+    // 不防抖的话会连着执行两次 —— 播放页关掉后紧跟着把整个 Activity 也退了。
+    val lastBackAt = remember { mutableLongStateOf(0L) }
+    val hostActivity = remember(ctx) { ctx.findActivity() }
+    fun requestBack() {
+        val now = SystemClock.uptimeMillis()
+        if (now - lastBackAt.longValue < 350L) return
+        lastBackAt.longValue = now
+        when {
+            playing != null -> playing = null
+            detailTarget != null -> detailTarget = null
+            showDeleteConfirm -> showDeleteConfirm = false
+            selecting -> exitSelect()
+            else -> hostActivity?.finish()
+        }
+    }
+
+    // 始终存在的返回处理：各层级分支自己判断，根页面则主动退出
+    BackHandler(enabled = true) { requestBack() }
 
     // 监听 Shizuku 授权结果
     DisposableEffect(Unit) {
@@ -128,11 +154,8 @@ fun BrowserScreen() {
         runCatching { gridState.scrollToItem(0) }
     }
 
-    // 选择模式下返回键 = 退出选择
-    BackHandler(enabled = selecting) { exitSelect() }
-
     playing?.let { current ->
-        PlayerScreen(video = current, onBack = { playing = null })
+        PlayerScreen(video = current, onBack = { requestBack() })
         return
     }
 
@@ -448,4 +471,14 @@ private fun EmptyHint(modifier: Modifier = Modifier) {
         color = MaterialTheme.colorScheme.onSurfaceVariant,
         modifier = modifier.padding(32.dp)
     )
+}
+
+/** 从可能被包装的 Context 里找出宿主 Activity（根页面返回时用它主动退出） */
+private fun Context.findActivity(): Activity? {
+    var c: Context? = this
+    while (c is ContextWrapper) {
+        if (c is Activity) return c
+        c = c.baseContext
+    }
+    return null
 }
